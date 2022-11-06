@@ -1,0 +1,34 @@
+extends layout
+
+block content
+  h1 Título do livro: #{book.title}
+
+  p #[strong Autor:]
+    a(href=book.author.url) #{book.author.name}
+  p #[strong Resumo:] #{book.summary}
+  p #[strong ISBN:] #{book.isbn}
+  p #[strong Gêneros:]
+    each val, index in book.genre
+      a(href=val.url) #{val.name}
+      if index < book.genre.length - 1
+        |,
+
+  div(style='margin-left:20px;margin-top:20px')
+    h4 Cópias
+
+    each val in bookInstances
+      hr
+      if val.status == 'Available'
+        p.text-success #{val.translatedStatus}
+      else if val.status == 'Maintenance'
+        p.text-danger #{val.translatedStatus}
+      else
+        p.text-warning #{val.translatedStatus}
+      p #[strong Impressão:] #{val.imprint}
+      if val.status != 'Available'
+        p #[strong Devolução:] #{val.dueBack}
+      p #[strong Identificador:]
+        a(href=val.url) #{val._id}
+
+    else
+      p Não há cópias para este livro.

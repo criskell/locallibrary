@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  h1 Gênero: #{genre.name}
+
+  div(style='margin-left:20px;margin-top:20px')
+    h4 Livros
+
+    dl
+      each book in genreBooks
+        dt
+          a(href=book.url) #{book.title}
+        dd #{book.summary}
+
+      else
+        p Não há livros neste gênero

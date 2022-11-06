@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  h1= title
+
+  ul
+    each bookInstance in bookInstances
+      li
+        a(href=bookInstance.url) #{bookInstance.book.title} : #{bookInstance.imprint} - 
+        if bookInstance.status == "Available"
+          span.text-success Disponível
+        else if bookInstance.status == "Maintenance"
+          span.text-danger Manutenção
+        else
+          span.text-warning= bookInstance.translatedStatus
+
+        if bookInstance.status != "Available"
+          span  (Devolução: #{bookInstance.dueBackFormatted} )
+
+    else
+      li Não há cópias de livros.

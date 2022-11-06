@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  h1= title
+  p Bem vindo à LocalLibrary, desenvolvida no tutorial da MDN.
+
+  if error
+    p Não foi possível carregar a página.
+  else
+    p Contagens
+
+    ul
+      li #[strong Livros:] #{counts.book}
+      li #[strong Cópias de livros:] #{counts.bookInstance}
+      li #[strong Cópias disponíveis:] #{counts.bookInstanceAvailable}
+      li #[strong Autores:] #{counts.author}
+      li #[strong Gêneros:] #{counts.genre}
